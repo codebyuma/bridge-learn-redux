@@ -1,37 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { connect } from 'react-redux'
-import { addProduct } from './actions';
+import { favouritePokemon } from './actions';
 
+import { POKEAPI_BASE_URL } from './constants/api-url';
 
-import { API_BASE_URL } from './constants/api-url';
+//https://img.pokemondb.net/artwork/${pokemon}.jpg <-- use for pictures
 
 const mapStateToProps = state => ({
-  products: state.products,
-})
+  pokemon: state.pokemon,
+});
 
 const mapDispatchToProps = {
-  addProduct,
-}
+  favouritePokemon,
+};
 
 class App extends Component {
   componentDidMount() {
-    this.props.addProduct({
-      name: 'Table',
-      department: 'Furniture',
-      price: '300.00',
-      stock: 5,
-    });
+    //get initial pokemon here, and update state with an action!
   }
 
   render() {
-    const { products, addProduct } = this.props;
+    const { pokemon, favouritePokemon } = this.props; // go over destructuring again
     return (
-      <div>
-        {products.map(product => <div>{product.name}</div>)}
-        <button onClick={ () => addProduct({ name: 'Sofa' }) }>Add Sofa</button>
-      </div>
+      <h1>Pokemon App!</h1>
+      //create SelectedPokemon here
+      //create PokemonList Here
     );
   }
 }

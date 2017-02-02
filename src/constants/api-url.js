@@ -1,1 +1,1 @@
-export const API_BASE_URL = 'https://instgram.com';
+export const POKEAPI_BASE_URL = 'https://pokeapi.coa/pi/v2/';
