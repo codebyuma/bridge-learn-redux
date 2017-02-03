@@ -1,5 +1,5 @@
 import React from 'react';
-import { expect } from 'chai';
+import { expect, assert } from 'chai';
 import { shallow } from 'enzyme';
 import {PokemonView} from './pokemon-view';
 import sinon from 'sinon';
@@ -23,13 +23,16 @@ describe('<PokemonView />', () => {
     let mySpy = sinon.spy();
 
     const wrapper = shallow(<PokemonView
-      pokeData={{name: 'Bob', height: '40 feet'}}
+      pokeData={{name: 'Jon', height: '40 feet'}}
       favourite={mySpy}
     />);
 
 
-    wrapper.find('button').simulate('click');
     expect(mySpy.calledOnce).to.equal(false);
+    wrapper.find('button').simulate('click');
+    expect(mySpy.calledOnce).to.equal(true);
+
+    assert(mySpy.calledWith('Jon'), 'I expect the pokemon name that is passed in to be what is called when the button is clicked');
 
   });
 
