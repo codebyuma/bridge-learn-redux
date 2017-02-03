@@ -9,7 +9,7 @@ import './index.css';
 import reducer from './reducers';
 
 const store = createStore(reducer,
-  applyMiddleware(thunk), // this is how think is integrated into the redux library
+  applyMiddleware(thunk), // this is how thunk is integrated into the redux library
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(

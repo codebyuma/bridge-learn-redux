@@ -1,29 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { favouritePokemon } from './actions';
+import { favouritePokemon, getPokemon } from './actions';
 
-import { POKEAPI_BASE_URL } from './constants/api-url';
+import {PokemonView} from './components/pokemon-view';
+
+import { GET_ALL_POKEMON_URL } from './constants/api-url';
 
 //https://img.pokemondb.net/artwork/${pokemon}.jpg <-- use for pictures
 
 const mapStateToProps = state => ({
-  pokemon: state.pokemon,
+  pokemon: state.pokemon.list,
 });
 
 const mapDispatchToProps = {
   favouritePokemon,
+  getPokemon
 };
 
 class App extends Component {
   componentDidMount() {
-    //get initial pokemon here, and update state with an action!
+    debugger;
+    this.props.getPokemon();
   }
 
   render() {
+
     const { pokemon, favouritePokemon } = this.props; // go over destructuring again
+    debugger;
     return (
-      <h1>Pokemon App!</h1>
-      //create SelectedPokemon here
+
+      <div>
+        <h1>Pokemon App!</h1>
+
+        {pokemon.map(poke => <h2>{poke.name}</h2>)}
+
+        {/*<PokemonView favourite={(name) => console.log(name)} pokeData={{name: 'Della', height: '180cm'}} />*/}
+      </div>
       //create PokemonList Here
     );
   }
