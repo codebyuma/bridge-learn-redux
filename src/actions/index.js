@@ -20,13 +20,10 @@ export function favouritePokemon(pokemon) {
 
 export function getPokemon() {
 
-  debugger;
 
   return function (dispatch) {
-    debugger;
     $.get(GET_ALL_POKEMON_URL)
       .then(response => {
-        debugger;
         dispatch({
           type: ACTION_TYPES.setPokemon,
           payload: {

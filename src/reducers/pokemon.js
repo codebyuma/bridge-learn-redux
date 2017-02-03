@@ -7,14 +7,12 @@ const INITIAL_STATE = {
 };
 
 export const pokemon = (state = INITIAL_STATE, {type, payload}) => {
-  debugger;
 
   switch (type) {
     case ACTION_TYPES.favouritePokemon:
       return {...state, ...{favouritePokemon: payload.pokemon}};
 
     case ACTION_TYPES.setPokemon:
-      debugger;
 
       return {...state, ...{list: payload.pokemon}};
 

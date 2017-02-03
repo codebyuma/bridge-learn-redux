@@ -19,22 +19,20 @@ const mapDispatchToProps = {
 
 class App extends Component {
   componentDidMount() {
-    debugger;
     this.props.getPokemon();
   }
 
   render() {
 
     const { pokemon, favouritePokemon } = this.props; // go over destructuring again
-    debugger;
     return (
 
       <div>
         <h1>Pokemon App!</h1>
+        <PokemonView favourite={(name) => console.log(name)} pokeData={{name: 'Della', height: '180cm'}} />
 
-        {pokemon.map(poke => <h2>{poke.name}</h2>)}
+        {pokemon.map(poke => <h2 key={poke.name}>{poke.name}</h2>)}
 
-        {/*<PokemonView favourite={(name) => console.log(name)} pokeData={{name: 'Della', height: '180cm'}} />*/}
       </div>
       //create PokemonList Here
     );
