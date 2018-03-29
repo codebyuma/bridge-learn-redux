@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from './features/app/app.container';
 import { fetchPokemons } from './features/app/app.actions';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { createLogger } from 'redux-logger';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { rootReducer } from './reducers';
+import { epicMiddleware } from './epics';
 import './index.css';
+
+const loggerMiddleware = createLogger()
 
 const store = createStore(
   rootReducer,
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(epicMiddleware, loggerMiddleware),
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
       window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),

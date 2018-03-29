@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { POKEAPI_BASE_URL } from '../constants/api-url';
 
 // This is a thunk! It's a function that returns another function!
@@ -23,5 +24,12 @@ export const pokemonRequest = ({ type, endpoint }) => {
   };
 };
 
-// We could have abstracted this function out even more so that it could support
-// multiple api's, ajax methods (PUT, POST, etc), and a request body.
+// This is a simpler version of the above - now we don't have to worry about dispatching
+// And we have a good seperation of concerns (which makes it easier to test, too!)
+export const cleanPokemonRequest = (endpoint) => {
+  return Observable.from(
+    fetch(`${POKEAPI_BASE_URL}/${endpoint}`)
+      .then(res => res.json()) // res.error()
+  );
+};
+
